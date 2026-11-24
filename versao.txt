@@ -1,0 +1,107 @@
+VERSAO DO PROJETO
+
+Nome: A11yAudit
+Tipo: ferramenta educacional de auditoria de acessibilidade web
+Versao documentada: 1.1
+Ultima atualizacao: 2026-11-19
+Licenca: nao definida no projeto
+
+DESCRICAO GERAL
+
+O A11yAudit combina uma interface responsiva em HTML, CSS e JavaScript com uma API Flask em Python. O usuario informa uma URL publica, o backend baixa o HTML da pagina e o analisador verifica elementos comuns relacionados a acessibilidade. Os resultados sao classificados por severidade e convertidos em uma pontuacao.
+
+ARQUIVOS PRINCIPAIS
+
+index.html
+- Estrutura semantica da pagina.
+- Formulario de URL.
+- Cartao de pontuacao.
+- Listagem dinamica de ocorrencias.
+- Menu responsivo.
+- Secoes informativas e rodape.
+
+assets/css/style.css
+- Variaveis visuais e reset global.
+- Layout responsivo.
+- Estilos do cabecalho, hero, formulario, resultados e cards.
+- Estados visual de erros, avisos e sucesso.
+- Indicador de carregamento e configuracoes de impressao.
+
+assets/js/script.js
+- Aguarda o carregamento do DOM.
+- Controla o menu mobile e navegacao ativa.
+- Valida o envio do formulario.
+- Envia a URL para o backend.
+- Trata respostas, erros e formato inesperado.
+- Exibe resultados com texto seguro no DOM.
+- Disponibiliza impressao do relatorio.
+
+backend/app.py
+- Cria a aplicacao Flask.
+- Configura cabecalos CORS para uso local.
+- Recebe POST em /api/audit.
+- Valida a URL antes do download.
+- Retorna erro ou o resultado da analise em JSON.
+
+backend/auditor.py
+- Valida esquema, host, IP e redirecionamentos.
+- Bloqueia destinos locais e privados.
+- Limita o tamanho da resposta HTTP.
+- Faz a leitura limitada do HTML.
+- Analisa o idioma, imagens, botoes, links, campos, titulos, viewport e titulo.
+- Calcula a pontuacao conforme severidades.
+
+backend/requirements.txt
+- Flask.
+- Flask-Cors.
+- Requests.
+- Beautiful Soup.
+
+README.md
+- Documentacao de uso, instalacao, API, estrutura e limitacoes.
+
+passo-a-passo.txt
+- Guia operacional rapido para preparar e executar o projeto.
+
+versao.txt
+- Registro desta versao, arquivos e melhorias futuras.
+
+.gitignore
+- Ignora ambientes virtuais, caches Python e arquivos temporarios.
+
+MOTOR DE ANALISE
+
+Penalidades:
+- Erro: 8 pontos.
+- Aviso: 4 pontos.
+- Informativo: 1 ponto.
+- Pontuacao minima: 0.
+
+Ocorrencias analisadas:
+- Idioma ausente no elemento html.
+- Imagens sem atributo alt.
+- Botoes sem texto, aria-label ou title.
+- Links sem texto ou nome acessivel.
+- Campos sem label ou atributos ARIA associados.
+- Hierarquia incorreta de titulos.
+- Quantidade incomum de h1.
+- Meta viewport ausente.
+- Titulo da pagina ausente.
+
+MELHORIAS FUTURAS
+
+- Adicionar analise automatizada com motor WCAG completo.
+- Verificar contraste de cores com CSS computado.
+- Tratar pagina dinamica renderizada por navegador.
+- Gerar PDF diretamente no backend.
+- Adicionar historico e exportacao JSON/CSV.
+- Permitir configuracao da API por variavel de ambiente.
+- Adicionar autenticacao caso o servico seja publicado.
+- Implementar fila para auditorias simultaneas.
+- Restringir CORS a origens de producao conhecidas.
+- Corrigir URLs com rebinding DNS em ambientes publicos.
+- Adicionar testes unitarios e testes de integracao.
+- Adicionar cache e limite de taxa por IP.
+- Mostrar numeros de linha e CSS seletores das ocorrencias.
+- Internacionalizar interface e relatórios.
+- Publicar em ambiente HTTPS com servidor WSGI.

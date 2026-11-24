@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>A11yAudit — Auditor de Acessibilidade Web</title>
+    <link rel="stylesheet" href="./assets/css/style.css" />
+    <!-- Remix Icon -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet" />
+</head>
+
+<body>
+
+    <!-- ========== HEADER ========== -->
+    <header class="header">
+        <div class="header__container container">
+            <a href="#" class="header__logo">
+                <i class="ri-eye-2-line"></i> A11yAudit
+            </a>
+            <nav class="header__nav" id="nav-menu">
+                <ul class="header__list">
+                    <li><a href="#auditor" class="header__link active">Auditor</a></li>
+                    <li><a href="#como-funciona" class="header__link">Como funciona</a></li>
+                    <li><a href="#recursos" class="header__link">Recursos</a></li>
+                </ul>
+            </nav>
+            <!-- Botão mobile -->
+            <button class="header__toggle" id="nav-toggle" aria-label="Abrir menu" aria-controls="nav-menu" aria-expanded="false">
+                <i class="ri-menu-line"></i>
+            </button>
+        </div>
+    </header>
+
+    <main>
+
+        <!-- ========== HERO ========== -->
+        <section class="hero" id="auditor">
+            <div class="hero__container container">
+                <div class="hero__content">
+                    <span class="hero__badge">🔍 Ferramenta gratuita</span>
+                    <h1 class="hero__title">
+                        Audite a <span class="text-primary">acessibilidade</span> do seu site em segundos
+                    </h1>
+                    <p class="hero__desc body-lg">
+                        Cole uma URL e receba um relatório completo com problemas de acessibilidade,
+                        priorizados por gravidade e com sugestões de correção.
+                    </p>
+                    <!-- Formulário de auditoria -->
+                    <form class="audit-form" id="audit-form">
+                        <div class="audit-form__input-wrapper">
+                            <i class="ri-link"></i>
+                            <input type="url" id="audit-url" class="audit-form__input" placeholder="https://exemplo.com"
+                                required />
+                        </div>
+                        <button type="submit" class="btn btn--primary" id="audit-btn">
+                            <i class="ri-search-line"></i> Auditar agora
+                        </button>
+                    </form>
+                    <p class="hero__note">Sem cadastro. Análise instantânea.</p>
+                </div>
+                <div class="hero__visual">
+                    <div class="hero__mockup">
+                        <div class="mockup-bar">
+                            <span class="mockup-dot"></span>
+                            <span class="mockup-dot"></span>
+                            <span class="mockup-dot"></span>
+                        </div>
+                        <div class="mockup-content" id="mockup-preview">
+                            <div class="mockup-placeholder">
+                                <i class="ri-file-search-line"></i>
+                                <p>Seu relatório aparecerá aqui</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== RESULTADOS (dinâmico) ========== -->
+        <section class="results" id="results-section" style="display: none;">
+            <div class="results__container container">
+                <!-- Score card -->
+                <div class="results__header">
+                    <div class="score-card" id="score-card">
+                        <div class="score-card__ring">
+                            <svg viewBox="0 0 120 120">
+                                <circle class="score-ring-bg" cx="60" cy="60" r="52" />
+                                <circle class="score-ring-fill" id="score-ring" cx="60" cy="60" r="52" />
+                            </svg>
+                            <span class="score-card__value" id="score-value">--</span>
+                        </div>
+                        <div class="score-card__info">
+                            <h3>Pontuação de Acessibilidade</h3>
+                            <p id="score-label">Aguardando análise...</p>
+                        </div>
+                    </div>
+                    <!-- Contadores -->
+                    <div class="stats-row" id="stats-row"></div>
+                </div>
+                <!-- Lista de problemas -->
+                <div class="results__list" id="issues-list"></div>
+                <!-- Ações -->
+                <div class="results__actions">
+                    <button class="btn btn--outline" id="export-btn">
+                        <i class="ri-download-line"></i> Exportar relatório (PDF)
+                    </button>
+                    <button class="btn btn--secondary" id="new-audit-btn">
+                        <i class="ri-refresh-line"></i> Nova auditoria
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== COMO FUNCIONA ========== -->
+        <section class="how" id="como-funciona">
+            <div class="how__container container">
+                <h2 class="section-title">Como funciona</h2>
+                <p class="section-subtitle">Três etapas simples para melhorar a acessibilidade do seu site</p>
+                <div class="how__steps">
+                    <div class="step-card">
+                        <div class="step-card__icon"><i class="ri-link-m"></i></div>
+                        <h3>1. Informe a URL</h3>
+                        <p>Cole o endereço de qualquer página pública que deseja analisar.</p>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-card__icon"><i class="ri-scan-line"></i></div>
+                        <h3>2. Análise automática</h3>
+                        <p>Nosso motor varre o HTML em busca de violações das diretrizes WCAG.</p>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-card__icon"><i class="ri-file-list-3-line"></i></div>
+                        <h3>3. Relatório acionável</h3>
+                        <p>Receba os problemas priorizados com explicações e sugestões de correção.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== RECURSOS ========== -->
+        <section class="features" id="recursos">
+            <div class="features__container container">
+                <h2 class="section-title">Recursos da ferramenta</h2>
+                <div class="features__grid">
+                    <div class="feature-card">
+                        <i class="ri-image-line"></i>
+                        <h3>Texto alternativo</h3>
+                        <p>Identifica imagens sem o atributo alt e sugere adicionar uma descrição ou marcar a imagem como decorativa.</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="ri-edit-2-line"></i>
+                        <h3>Rótulos de formulários</h3>
+                        <p>Verifica se campos de formulário possuem label associado ou nome acessível.</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="ri-links-line"></i>
+                        <h3>Nomes de botões e links</h3>
+                        <p>Encontra botões sem nome acessível e links sem texto ou descrição.</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="ri-heading"></i>
+                        <h3>Hierarquia de títulos</h3>
+                        <p>Detecta saltos na ordem dos títulos e verifica a quantidade de títulos principais.</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="ri-translate-2"></i>
+                        <h3>Idioma e título da página</h3>
+                        <p>Verifica se a página declara o idioma e possui um título descritivo.</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="ri-smartphone-line"></i>
+                        <h3>Configuração para dispositivos móveis</h3>
+                        <p>Verifica a presença da meta viewport, sem avaliar o layout responsivo da página.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="footer">
+        <div class="footer__container container">
+            <p>&copy; <span id="current-year"></span> A11yAudit. Ferramenta educacional de código aberto.</p>
+        </div>
+    </footer>
+
+    <!-- ========== LOADING OVERLAY ========== -->
+    <div class="overlay" id="loading-overlay" style="display: none;">
+        <div class="overlay__spinner">
+            <div class="spinner"></div>
+            <p>Analisando página...</p>
+        </div>
+    </div>
+
+    <script src="./assets/js/script.js"></script>
+</body>
+
+</html>

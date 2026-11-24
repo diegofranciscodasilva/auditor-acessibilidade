@@ -1,0 +1,36 @@
+A11yAudit - PASSO A PASSO
+
+1. PREPARAR O AMBIENTE
+   - Instale o Python 3.10 ou superior.
+   - Abra o PowerShell na pasta do projeto.
+   - Crie o ambiente: python -m venv venv
+   - Instale as dependencias: .\venv\Scripts\python.exe -m pip install -r backend\requirements.txt
+
+2. INICIAR A API
+   - Execute: .\venv\Scripts\python.exe backend\app.py
+   - O backend sera iniciado em http://localhost:5000.
+   - A rota principal sera POST http://localhost:5000/api/audit.
+
+3. INICIAR O SITE
+   - Em outro terminal, entre na pasta do projeto.
+   - Execute: .\venv\Scripts\python.exe -m http.server 5500
+   - Acesse http://localhost:5500.
+
+4. REALIZAR UMA AUDITORIA
+   - Digite uma URL publica iniciada com http:// ou https://.
+   - Clique em "Auditar agora".
+   - Aguarde a coleta e analise da pagina.
+   - Consulte a pontuacao de 0 a 100.
+   - Leia os erros, avisos e informativos apresentados.
+   - Use as sugestoes para corrigir o HTML da pagina auditada.
+
+5. EXPORTAR O RESULTADO
+   - Clique em "Exportar relatório (PDF)".
+   - Escolha uma impressora PDF no dialogo do navegador.
+   - Use "Nova auditoria" para iniciar outra verificacao.
+
+6. VALIDAR O PROJETO
+   - Execute: .\venv\Scripts\python.exe -m compileall -q backend
+   - Inicie API e interface.
+   - Teste uma pagina valida e uma URL invalida.
+   - Confirme que os resultados aparecem sem alterar o HTML original.
